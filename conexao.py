@@ -13,19 +13,20 @@ class Conexao():
 
     def conectar(self):
         try:
-           return pymysql.connect(host=self.host,  
+           conexao = pymysql.connect(host=self.host,  
                                     port=self.port, 
                                     user=self.user, 
                                     password=self.password, 
                                     database=self.database, 
                                     cursorclass=pymysql.cursors.DictCursor)
-        except pymysql.ConnectionError:
+           return conexao
+        except:
             return False
         
     def desconectar(self, cursor):
         try:
             cursor.close()
-        except pymysql.ConnectionError:
+        except:
             return False
         
 
