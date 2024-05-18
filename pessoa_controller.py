@@ -21,7 +21,7 @@ class PessoaController:
         Conexao().desconectar(cursor)
         return dados.to_dict()
 
-    def setPessoa(pessoa: Pessoa) -> str:
+    async def setPessoa(pessoa: Pessoa) -> dict:
         pessoa_local = Pessoa(pessoa.nome, pessoa.email, pessoa.mensagem)
         
         conexao = Conexao().conectar()
@@ -30,12 +30,12 @@ class PessoaController:
         try:
             res = cursor.execute(sql) 
             if res <= 0:
-                return "Dados não inseridos!" 
+                return {"message":"Dados não inseridos!"}
         except:
-            return "Falha na gravação da pessoa"
+            return {"message":"Falha na gravação da pessoa"}
         finally:
             cursor.close()
             conexao.commit()
             Conexao().desconectar(cursor)
         
-        return "Pessoa " + pessoa_local.nome + ' inserida com sucesso!'
+        return {"message":"Pessoa " + pessoa_local.nome + ' inserida com sucesso!'}

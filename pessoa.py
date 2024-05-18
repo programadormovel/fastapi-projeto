@@ -1,6 +1,8 @@
 from pydantic import BaseModel, PrivateAttr
 
 class Pessoa(BaseModel):
+    "Classe modelo para criação do objeto Pessoa."
+    
     __nome: str = PrivateAttr()
     __email: str = PrivateAttr()
     __mensagem: str = PrivateAttr()
@@ -21,6 +23,7 @@ class Pessoa(BaseModel):
         
     @property
     def email(self):
+        a = []
         return self.__email
     
     @email.setter

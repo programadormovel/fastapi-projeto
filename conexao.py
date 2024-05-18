@@ -1,15 +1,16 @@
 import pymysql
+import boto3
 
 class Conexao():
     
     cursor = pymysql.cursors
     
     def __init__(self):
-        self.host='localhost'
+        self.host='sql10.freesqldatabase.com'
         self.port=3306
-        self.user='root'
-        self.password='123456'
-        self.database='miniprojeto'
+        self.user='sql10698414'
+        self.password='qhuJPDhLAa'
+        self.database='sql10698414'
 
     def conectar(self):
         try:
@@ -29,6 +30,10 @@ class Conexao():
         except:
             return False
         
+    def conectar_aws_sqs(self):
+        return boto3.client('sqs', region_name="us-east-2", 
+                         aws_access_key_id="AKIAZQ3DOASBAGAEKDWJ",
+                         aws_secret_access_key="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")
 
         
 
